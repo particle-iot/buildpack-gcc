@@ -34,6 +34,8 @@ $ docker run --rm \
   particle/buildpack-gcc
 ```
 
+`FIRMWARE_REPO` will be fetched to cache directory provided with `-v` flag. It will also contain compilation intermediate files.
+
 ### Input files
 Source files have to be placed in `~/tmp/input`
 
@@ -45,4 +47,3 @@ After build `~/tmp/output` will be propagated with:
 
 **Files only available if compilation succeeds:**
 * `firmware.bin` - compiled firmware
-* `memory-use.log` - firmware memory use
