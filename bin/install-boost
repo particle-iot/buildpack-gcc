@@ -1,0 +1,12 @@
+test -f boost_$BOOST_VERSION.tar.gz || wget --quiet http://downloads.sourceforge.net/project/boost/boost/1.59.0/boost_$BOOST_VERSION.tar.gz
+mkdir -p $BOOST_HOME
+test -d $BOOST_ROOT || (
+   tar zxf boost_$BOOST_VERSION.tar.gz
+   mv boost_$BOOST_VERSION  $BOOST_HOME
+)
+test -d $BOOST_ROOT || ( echo "boost root $BOOST_ROOT not created." && exit 1)
+export LD_LIBRARY_PATH=$BOOST_ROOT/stage/lib:$LD_LIBRARY_PATH
+
+cd $BOOST_ROOT
+./bootstrap.sh
+./b2  --with-thread  --with-system --with-program_options --with-random  --threading=single

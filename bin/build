@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Export environment variables
+source /bin/setup-hal-env
+
+# Download fimware to cache dir
+mkdir -p "$CACHE_DIR/$FIRMWARE_HASH"
+clone-repo $FIRMWARE_REPO $FIRMWARE_PATH
+
+mkdir -p $WORKSPACE_DIR/target
+touch $WORKSPACE_DIR/target/workspace.bin
+
+cd $FIRMWARE_PATH/main
+make -s
+
+if [ $? -eq 0 ]; then
+  TARGET_DIR=$WORKSPACE_DIR/target
+  copy-to-output $TARGET_DIR/workspace
+
+  # Normalize firmware binary name
+  mv $OUTPUT_DIR/workspace $OUTPUT_DIR/firmware.bin
+else
+  exit $?
+fi
