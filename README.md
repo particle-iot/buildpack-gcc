@@ -6,13 +6,13 @@ Buildpack for modern (HAL based) Particle firmware against regular gcc.
 | |
 |---|
 | **GCC (you are here)** |
-| [Base](https://github.com/spark/buildpack-base) |
+| [Base](https://github.com/particle-iot/buildpack-base) |
 
-This image inherits [base buildpack](https://github.com/spark/buildpack-base).
+This image inherits [base buildpack](https://github.com/particle-iot/buildpack-base).
 
 ## Building image
 
-**Before building this image, build or pull [buildpack-base](https://github.com/spark/buildpack-base).**
+**Before building this image, build or pull [buildpack-base](https://github.com/particle-iot/buildpack-base).**
 
 ```bash
 $ export BUILDPACK_IMAGE=gcc
@@ -29,7 +29,7 @@ $ docker run --rm \
   -v ~/tmp/input:/input \
   -v ~/tmp/output:/output \
   -v ~/tmp/cache:/cache \
-  -e FIRMWARE_REPO=https://github.com/spark/firmware.git#v0.5.3-rc.2 \
+  -e FIRMWARE_REPO=https://github.com/particle-iot/firmware.git#v0.5.3-rc.2 \
   -e PLATFORM_ID=3 \
   particle/buildpack-gcc
 ```
